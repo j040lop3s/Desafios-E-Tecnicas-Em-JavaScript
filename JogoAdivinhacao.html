@@ -1,0 +1,47 @@
+<script>
+    let tentativas = ['primeiro','segundo','terceiro','quarto','quinto'];
+    let acertou = false;
+
+    alert("---JOGO DE ADIVINHAÇÃO---\nUm número secreto entre 1 a 20 vai ser gerado aleatoriamente!\nFaça palpites até acertar, voce tem 5 [CINCO] tentativas.\nAo final voce pode desistir ou tentar novamente com um novo numero secreto!");
+
+    function adivinhar(numRND) {    
+        
+        let novamente = 0;
+
+        do {
+            let numRND = Math.floor(Math.random() * 20) + 1;
+            alert("Numero aleatorio foi gerado! Tente acerta-lo.");
+        for (let i = 0 ; i  < tentativas.length ; i++) {
+            const restantes = tentativas.length - (i + 1);
+            let palpite = Number(prompt(`Este e seu ${tentativas[i]} palpite!\nQual e?`));
+
+            if (isNaN(palpite)) {
+                alert("Entrada Invalida. Palpite nao contabilizado.");
+                i-- ; continue ; }
+
+            if (palpite === numRND) {
+                alert("Parabens! Voce acertou no " + tentativas[i] + " palpite!");
+                acertou = true ;
+                break ;
+            } else if (palpite < numRND) {
+                alert(`Seu palpite é menor que o numero secreto!. Voce tem ${restantes} tentativas!`);
+            } else if (palpite > numRND) {
+                alert(`Seu palpite é maior que o numero secreto!. Voce tem ${restantes} tentativas!`);
+            }
+        }
+
+        if (!acertou) {
+            alert(`Voce esgotou seus palpites e nao acertou o numero secreto ${numRND}.`);
+        }
+
+        novamente = Number(prompt(`Quer jogar novamente?\nTecle [1] para sim ou [0] para nao!`));
+
+    } while (novamente === 1) ;
+
+    alert("Obrigado por jogar! :) ")
+
+}
+
+    adivinhar();
+
+</script>
